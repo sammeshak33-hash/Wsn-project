@@ -7,6 +7,8 @@ from energy_model import (
 )
 from config import PACKET_SIZE
 
+from ip_gjoa import IPGJOA
+
 
 def main():
 
@@ -63,6 +65,20 @@ def main():
     print("\nAfter Transmission")
     print_energy(sender)
     print_energy(receiver)
+
+
+    # ----------------------------
+    # Ip-GJOA Initialization
+    # ----------------------------
+    print("\n==============================")
+    print("IP-GJOA INITIALIZATION")
+    print("==============================")
+
+    optimizer = IPGJOA(len(nodes))
+
+    optimizer.initialize_population()
+
+    optimizer.display_population()
 
 
 if __name__ == "__main__":
