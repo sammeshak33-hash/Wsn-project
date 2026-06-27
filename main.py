@@ -9,6 +9,8 @@ from config import PACKET_SIZE
 
 from ip_gjoa import IPGJOA
 
+from fitness import FitnessCalculator
+
 
 def main():
 
@@ -67,7 +69,7 @@ def main():
     print_energy(receiver)
 
 
-    # ----------------------------
+        # ----------------------------
     # Ip-GJOA Initialization
     # ----------------------------
     print("\n==============================")
@@ -79,6 +81,32 @@ def main():
     optimizer.initialize_population()
 
     optimizer.display_population()
+
+    # ----------------------------
+    # Fitness Components Test
+    # ----------------------------
+    fitness = FitnessCalculator(nodes)
+
+    print("\n========== Fitness Components ==========\n")
+
+    solution = optimizer.population[0]
+
+    print("Solution :", solution)
+
+    print(
+        "Average Energy :",
+        fitness.calculate_average_energy(solution)
+    )
+
+    print(
+        "Average Trust :",
+        fitness.calculate_average_trust(solution)
+    )
+
+    print(
+        "Path Distance :",
+        fitness.calculate_path_distance(solution)
+    )
 
 
 if __name__ == "__main__":
