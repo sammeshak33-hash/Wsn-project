@@ -69,7 +69,7 @@ def main():
     print_energy(receiver)
 
 
-        # ----------------------------
+    # ----------------------------
     # Ip-GJOA Initialization
     # ----------------------------
     print("\n==============================")
@@ -83,30 +83,20 @@ def main():
     optimizer.display_population()
 
     # ----------------------------
-    # Fitness Components Test
+    # Fitness Evaluation
     # ----------------------------
     fitness = FitnessCalculator(nodes)
 
-    print("\n========== Fitness Components ==========\n")
+    print("\n========== Fitness Evaluation ==========\n")
 
-    solution = optimizer.population[0]
+    for i, solution in enumerate(optimizer.population):
 
-    print("Solution :", solution)
+        fitness_value = fitness.calculate_fitness(solution)
 
-    print(
-        "Average Energy :",
-        fitness.calculate_average_energy(solution)
-    )
-
-    print(
-        "Average Trust :",
-        fitness.calculate_average_trust(solution)
-    )
-
-    print(
-        "Path Distance :",
-        fitness.calculate_path_distance(solution)
-    )
+        print(f"Solution {i+1}")
+        print("Cluster Heads :", solution)
+        print("Fitness :", round(fitness_value, 6))
+        print("---------------------------------------")
 
 
 if __name__ == "__main__":

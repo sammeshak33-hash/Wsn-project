@@ -32,3 +32,18 @@ class FitnessCalculator:
             total_distance += self.nodes[node_id].distance_to_bs
 
         return total_distance
+    def calculate_fitness(self, solution):
+
+        avg_energy = self.calculate_average_energy(solution)
+
+        avg_trust = self.calculate_average_trust(solution)
+
+        path_distance = self.calculate_path_distance(solution)
+
+        fitness = (
+            ALPHA * (1 / path_distance)
+            + BETA * avg_energy
+            + GAMMA * avg_trust
+        )
+
+        return fitness
