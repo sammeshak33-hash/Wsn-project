@@ -70,3 +70,48 @@ class IPGJOA:
         female = ranked[1]
 
         return male, female
+    
+
+    def update_position(self, current_solution, male_solution, female_solution):
+        """
+        Update a candidate solution by moving it
+        toward the Male and Female Jackals.
+        """
+
+        new_solution = []
+
+        for i in range(self.num_cluster_heads):
+
+            current = current_solution[i]
+            male = male_solution[i]
+            female = female_solution[i]
+
+            new_position = round(
+                (current + male + female) / 3
+            )
+
+            # Keep node ID within valid range
+            new_position = max(
+                0,
+                min(new_position, self.total_nodes - 1)
+            )
+
+            new_solution.append(new_position)
+
+        # Remove duplicate node IDs
+        new_solution = list(set(new_solution))
+
+        # Repair solution if duplicates were removed
+        while len(new_solution) < self.num_cluster_heads:
+
+            candidate = random.randint(
+                0,
+                self.total_nodes - 1
+            )
+
+            if candidate not in new_solution:
+                new_solution.append(candidate)
+
+        new_solution.sort()
+
+        return new_solution

@@ -123,6 +123,25 @@ def main():
     print("Fitness :", round(female[1], 6))
 
     # ----------------------------
+    # Position Update Test
+    # ----------------------------
+    print("\n========== Position Update ==========\n")
+
+    current_solution = optimizer.population[2]
+
+    print("Current Solution :", current_solution)
+    print("Male Solution    :", male[0])
+    print("Female Solution  :", female[0])
+
+    new_solution = optimizer.update_position(
+        current_solution,
+        male[0],
+        female[0]
+    )
+
+    print("\nUpdated Solution :", new_solution)
+
+    # ----------------------------
     # Hunting Energy
     # ----------------------------
     print("\n========== Hunting Energy ==========\n")
