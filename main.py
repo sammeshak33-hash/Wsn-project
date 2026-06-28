@@ -98,6 +98,18 @@ def main():
         print("Fitness :", round(fitness_value, 6))
         print("---------------------------------------")
 
+    # ----------------------------
+    # Hunting Energy
+    # ----------------------------
+    print("\n========== Hunting Energy ==========\n")
+
+    for iteration in range(1, 6):
+
+        M = optimizer.hunting_energy(iteration)
+
+        print(f"Iteration {iteration}")
+        print("Searching Energy :", round(M, 6))
+        print("--------------------------------") 
 
 if __name__ == "__main__":
     main()

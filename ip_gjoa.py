@@ -1,3 +1,4 @@
+import math
 import random
 from config import *
 
@@ -38,3 +39,16 @@ class IPGJOA:
             print(f"Solution {i+1:2d} : {solution}")
 
         print("\n========================================")
+
+    def hunting_energy(self, iteration):
+        L1 = 1
+
+        M = (
+            0.05
+            * L1
+            * math.exp(
+                -2 * ((iteration / MAX_ITERATIONS) ** 2)
+            )
+        )
+
+        return M    
