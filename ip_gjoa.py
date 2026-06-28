@@ -51,4 +51,22 @@ class IPGJOA:
             )
         )
 
-        return M    
+        return M 
+       
+    def select_male_female_jackals(self, fitness_values):
+        """
+        Select the best (Male) and second-best (Female)
+        solutions based on fitness.
+        """
+
+        ranked = list(zip(self.population, fitness_values))
+
+        ranked.sort(
+            key=lambda x: x[1],
+            reverse=True
+        )
+
+        male = ranked[0]
+        female = ranked[1]
+
+        return male, female

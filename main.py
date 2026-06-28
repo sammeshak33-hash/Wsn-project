@@ -97,6 +97,30 @@ def main():
         print("Cluster Heads :", solution)
         print("Fitness :", round(fitness_value, 6))
         print("---------------------------------------")
+    # ----------------------------
+    # Elite Jackal Selection
+    # ----------------------------
+    fitness_values = []
+
+    for solution in optimizer.population:
+        fitness_values.append(
+            fitness.calculate_fitness(solution)
+        )
+
+    male, female = optimizer.select_male_female_jackals(
+        fitness_values
+    )
+
+    print("\n========== Elite Jackals ==========\n")
+
+    print("Male Jackal")
+    print("Solution :", male[0])
+    print("Fitness :", round(male[1], 6))
+    print()
+
+    print("Female Jackal")
+    print("Solution :", female[0])
+    print("Fitness :", round(female[1], 6))
 
     # ----------------------------
     # Hunting Energy
