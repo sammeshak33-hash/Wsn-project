@@ -13,6 +13,8 @@ from fitness import FitnessCalculator
 
 from cluster_formation import ClusterFormation
 
+from trust_computation import TrustComputation
+
 def main():
 
     # ----------------------------
@@ -158,7 +160,7 @@ def main():
 
     print("After Exploration")
     print(explored_solution)   
-        # ----------------------------
+    # ----------------------------
     # Exploitation Phase
     # ----------------------------
     print("\n========== Exploitation Phase ==========\n")
@@ -210,6 +212,18 @@ def main():
     clusters = cluster.form_clusters(best_solution)
 
     cluster.display_clusters()  
+
+    # ----------------------------
+    # Trust Computation
+    # ----------------------------
+ 
+    trust = TrustComputation(nodes)
+
+    trust.initialize_trust()
+
+    trust.calculate_direct_trust()
+
+    trust.display_direct_trust()
 
 
 if __name__ == "__main__":
