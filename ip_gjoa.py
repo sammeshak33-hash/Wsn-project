@@ -115,3 +115,35 @@ class IPGJOA:
         new_solution.sort()
 
         return new_solution
+    def exploration_phase(self, solution):
+        """
+        Perform exploration by randomly replacing
+        one Cluster Head with another valid node.
+        """
+
+        explored_solution = solution.copy()
+
+        # Select one Cluster Head randomly
+        index = random.randint(
+            0,
+            self.num_cluster_heads - 1
+        )
+
+        # Generate a new node
+        new_node = random.randint(
+            0,
+            self.total_nodes - 1
+        )
+
+        # Avoid duplicate Cluster Heads
+        while new_node in explored_solution:
+            new_node = random.randint(
+                0,
+                self.total_nodes - 1
+            )
+
+        explored_solution[index] = new_node
+
+        explored_solution.sort()
+
+        return explored_solution

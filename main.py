@@ -142,6 +142,23 @@ def main():
     print("\nUpdated Solution :", new_solution)
 
     # ----------------------------
+    # Exploration Phase
+    # ----------------------------
+    print("\n========== Exploration Phase ==========\n")
+
+    explored_solution = optimizer.exploration_phase(
+        new_solution
+    )
+
+    print("Before Exploration")
+    print(new_solution)
+
+    print()
+
+    print("After Exploration")
+    print(explored_solution)   
+
+    # ----------------------------
     # Hunting Energy
     # ----------------------------
     print("\n========== Hunting Energy ==========\n")
