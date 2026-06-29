@@ -157,6 +157,22 @@ def main():
 
     print("After Exploration")
     print(explored_solution)   
+        # ----------------------------
+    # Exploitation Phase
+    # ----------------------------
+    print("\n========== Exploitation Phase ==========\n")
+
+    exploited_solution = optimizer.exploitation_phase(
+        explored_solution
+    )
+
+    print("Before Exploitation")
+    print(explored_solution)
+
+    print()
+
+    print("After Exploitation")
+    print(exploited_solution)
 
     # ----------------------------
     # Hunting Energy

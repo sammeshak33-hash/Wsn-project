@@ -147,3 +147,36 @@ class IPGJOA:
         explored_solution.sort()
 
         return explored_solution
+    def exploitation_phase(self, solution):
+        """
+        Perform exploitation by making a small local
+        adjustment to one Cluster Head.
+        """
+
+        exploited_solution = solution.copy()
+
+        index = random.randint(
+            0,
+            self.num_cluster_heads - 1
+        )
+
+        step = random.choice([-1, 1])
+
+        new_node = exploited_solution[index] + step
+
+        new_node = max(
+            0,
+            min(new_node, self.total_nodes - 1)
+        )
+
+        while new_node in exploited_solution:
+            new_node = random.randint(
+                0,
+                self.total_nodes - 1
+            )
+
+        exploited_solution[index] = new_node
+
+        exploited_solution.sort()
+
+        return exploited_solution
