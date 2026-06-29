@@ -221,9 +221,13 @@ def main():
 
     trust.initialize_trust()
 
+    # Direct Trust
     trust.calculate_direct_trust()
-
     trust.display_direct_trust()
+
+    # Indirect Trust
+    trust.calculate_indirect_trust()
+    trust.display_indirect_trust()
 
 
 if __name__ == "__main__":

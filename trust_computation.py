@@ -36,6 +36,32 @@ class TrustComputation:
                 packets_sent
             )
 
+    def calculate_indirect_trust(self):
+
+        for node in self.nodes:
+
+            neighbor_trusts = []
+
+            for neighbor_id in node.neighbors:
+
+                neighbor = self.nodes[neighbor_id]
+
+                neighbor_trusts.append(
+                    neighbor.direct_trust
+                )
+
+            if len(neighbor_trusts) > 0:
+
+                node.indirect_trust = (
+                    sum(neighbor_trusts)
+                    /
+                    len(neighbor_trusts)
+                )
+
+            else:
+
+                node.indirect_trust = node.direct_trust        
+
     def display_direct_trust(self):
         """
         Display Direct Trust of the first 10 nodes.
@@ -49,3 +75,17 @@ class TrustComputation:
                 f"Node {node.id:2d} : "
                 f"{node.direct_trust:.3f}"
             )
+
+    def display_indirect_trust(self):
+        """
+        Display Indirect Trust of the first 10 nodes.
+        """
+
+        print("\n========== Indirect Trust ==========\n")
+
+        for node in self.nodes[:10]:
+
+            print(
+                f"Node {node.id:2d} : "
+                f"{node.indirect_trust:.3f}"
+            )        
