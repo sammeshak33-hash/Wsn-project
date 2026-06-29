@@ -11,6 +11,7 @@ from ip_gjoa import IPGJOA
 
 from fitness import FitnessCalculator
 
+from cluster_formation import ClusterFormation
 
 def main():
 
@@ -198,7 +199,17 @@ def main():
 
     print()
 
-    print("Best Fitness :", round(best_fitness, 6))     
+    print("Best Fitness :", round(best_fitness, 6))   
+
+    # ----------------------------
+    # Cluster Formation
+    # ----------------------------
+
+    cluster = ClusterFormation(nodes)
+
+    clusters = cluster.form_clusters(best_solution)
+
+    cluster.display_clusters()  
 
 
 if __name__ == "__main__":
