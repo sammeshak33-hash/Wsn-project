@@ -60,7 +60,23 @@ class TrustComputation:
 
             else:
 
-                node.indirect_trust = node.direct_trust        
+                node.indirect_trust = node.direct_trust 
+
+    def calculate_overall_trust(self):
+        """
+        Calculate Overall Trust using weighted combination.
+        """
+
+        DIRECT_WEIGHT = 0.6
+        INDIRECT_WEIGHT = 0.4
+
+        for node in self.nodes:
+
+            node.total_trust = (
+                DIRECT_WEIGHT * node.direct_trust
+                +
+                INDIRECT_WEIGHT * node.indirect_trust
+            )                   
 
     def display_direct_trust(self):
         """
@@ -88,4 +104,18 @@ class TrustComputation:
             print(
                 f"Node {node.id:2d} : "
                 f"{node.indirect_trust:.3f}"
+            )        
+
+    def display_overall_trust(self):
+        """
+        Display Overall Trust of the first 10 nodes.
+        """
+
+        print("\n========== Overall Trust ==========\n")
+
+        for node in self.nodes[:10]:
+
+            print(
+                f"Node {node.id:2d} : "
+                f"{node.total_trust:.3f}"
             )        

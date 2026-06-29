@@ -229,6 +229,10 @@ def main():
     trust.calculate_indirect_trust()
     trust.display_indirect_trust()
 
+    # Overall Trust
+    trust.calculate_overall_trust()
+    trust.display_overall_trust()
+
 
 if __name__ == "__main__":
     main()
