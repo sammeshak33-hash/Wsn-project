@@ -187,5 +187,19 @@ def main():
         print("Searching Energy :", round(M, 6))
         print("--------------------------------") 
 
+    print("\n========== Optimization ==========\n")
+
+    best_solution, best_fitness, history = optimizer.optimize(fitness)
+
+    print("\n========== Final Result ==========\n")
+
+    print("Best Cluster Head Solution :")
+    print(best_solution)
+
+    print()
+
+    print("Best Fitness :", round(best_fitness, 6))     
+
+
 if __name__ == "__main__":
     main()

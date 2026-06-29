@@ -180,3 +180,69 @@ class IPGJOA:
         exploited_solution.sort()
 
         return exploited_solution
+    def optimize(self, fitness_calculator):
+        """
+        Complete IP-GJOA optimization process.
+        """
+
+        best_solution = None
+        best_fitness = -1
+        fitness_history = []
+
+        for iteration in range(MAX_ITERATIONS):
+
+            print(f"\nIteration {iteration + 1}")
+
+            
+
+            # ----------------------------
+            # Evaluate Fitness
+            # ----------------------------
+            fitness_values = []
+
+            for solution in self.population:
+                fitness = fitness_calculator.calculate_fitness(solution)
+                fitness_values.append(fitness)
+
+            # ----------------------------
+            # Select Male & Female
+            # ----------------------------
+            male, female = self.select_male_female_jackals(
+                fitness_values
+            )
+
+            # ----------------------------
+            # Save Best Solution
+            # ----------------------------
+            if male[1] > best_fitness:
+                best_fitness = male[1]
+                best_solution = male[0].copy()
+
+            fitness_history.append(best_fitness)
+
+            print("Best Fitness :", round(best_fitness, 6))
+
+            # ----------------------------
+            # Update Population
+            # ----------------------------
+            new_population = []
+
+            for solution in self.population:
+
+                updated = self.update_position(
+                    solution,
+                    male[0],
+                    female[0]
+                )
+
+                explored = self.exploration_phase(updated)
+
+                exploited = self.exploitation_phase(explored)
+
+                new_population.append(exploited)
+
+                
+
+            self.population = new_population
+
+        return best_solution, best_fitness, fitness_history
