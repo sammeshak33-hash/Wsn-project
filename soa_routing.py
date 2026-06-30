@@ -85,4 +85,22 @@ class SOARouting:
 
             print("Fitness :", round(fitness, 6))
 
-            print("--------------------------------")        
+            print("--------------------------------")   
+
+    def select_male_female_snakes(self, fitness_values):
+        """
+        Select the Male Snake (best route) and
+        Female Snake (second-best route).
+        """
+
+        ranked_routes = list(zip(self.routes, fitness_values))
+
+        ranked_routes.sort(
+            key=lambda x: x[1],
+            reverse=True
+        )
+
+        male_snake = ranked_routes[0]
+        female_snake = ranked_routes[1]
+
+        return male_snake, female_snake             

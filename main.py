@@ -264,6 +264,26 @@ def main():
 
     routing.display_route_fitness(fitness_values)
 
+    # ----------------------------
+    # Elite Snake Selection
+    # ----------------------------
+
+    male_snake, female_snake = routing.select_male_female_snakes(
+        fitness_values
+    )
+
+    print("\n========== Elite Snakes ==========\n")
+
+    print("Male Snake")
+    print("Route :", male_snake[0])
+    print("Fitness :", round(male_snake[1], 6))
+
+    print()
+
+    print("Female Snake")
+    print("Route :", female_snake[0])
+    print("Fitness :", round(female_snake[1], 6))
+
 
 if __name__ == "__main__":
     main()
