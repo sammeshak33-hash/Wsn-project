@@ -15,6 +15,8 @@ from cluster_formation import ClusterFormation
 
 from trust_computation import TrustComputation
 
+from soa_routing import SOARouting
+
 def main():
 
     # ----------------------------
@@ -243,6 +245,16 @@ def main():
         trusted_nodes,
         malicious_nodes
     )
+
+    # ----------------------------
+    # SOA Routing Initialization
+    # ----------------------------
+
+    routing = SOARouting(nodes, clusters)
+
+    routing.initialize_routes()
+
+    routing.display_routes()
 
 
 if __name__ == "__main__":
