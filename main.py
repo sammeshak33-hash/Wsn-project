@@ -233,6 +233,17 @@ def main():
     trust.calculate_overall_trust()
     trust.display_overall_trust()
 
+    # ----------------------------
+    # Node Classification
+    # ----------------------------
+
+    trusted_nodes, malicious_nodes = trust.classify_nodes()
+
+    trust.display_node_classification(
+        trusted_nodes,
+        malicious_nodes
+    )
+
 
 if __name__ == "__main__":
     main()

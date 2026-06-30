@@ -118,4 +118,50 @@ class TrustComputation:
             print(
                 f"Node {node.id:2d} : "
                 f"{node.total_trust:.3f}"
-            )        
+            )  
+
+    def classify_nodes(self):
+        """
+        Classify nodes as Trusted or Malicious.
+        """
+
+        TRUST_THRESHOLD = 0.70
+
+        trusted_nodes = []
+        malicious_nodes = []
+
+        for node in self.nodes:
+
+            if node.total_trust >= TRUST_THRESHOLD:
+
+                node.status = "Trusted"
+
+                trusted_nodes.append(node.id)
+
+            else:
+
+                node.status = "Malicious"
+
+                malicious_nodes.append(node.id)
+
+        return trusted_nodes, malicious_nodes
+
+
+    def display_node_classification(
+        self,
+        trusted_nodes,
+        malicious_nodes
+    ):
+        """
+        Display Trusted and Malicious nodes.
+        """
+
+        print("\n========== Node Classification ==========\n")
+
+        print(f"Trusted Nodes ({len(trusted_nodes)}):")
+        print(trusted_nodes)
+
+        print()
+
+        print(f"Malicious Nodes ({len(malicious_nodes)}):")
+        print(malicious_nodes)              
