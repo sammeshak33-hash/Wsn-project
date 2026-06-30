@@ -256,6 +256,14 @@ def main():
 
     routing.display_routes()
 
+    # ----------------------------
+    # Route Fitness Evaluation
+    # ----------------------------
+
+    fitness_values = routing.calculate_route_fitness()
+
+    routing.display_route_fitness(fitness_values)
+
 
 if __name__ == "__main__":
     main()
