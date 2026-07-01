@@ -321,6 +321,22 @@ def main():
     print("After Exploitation")
     print(exploited_route)
 
+    # ----------------------------
+    # SOA Optimization
+    # ----------------------------
+
+    print("\n========== SOA Optimization ==========\n")
+
+    best_route, best_fitness, history = routing.optimize_routes()
+
+    print("Best Secure Route")
+    print(best_route)
+
+    print()
+
+    print("Best Route Fitness")
+    print(round(best_fitness, 6))
+
 
 if __name__ == "__main__":
     main()

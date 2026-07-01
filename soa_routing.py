@@ -1,3 +1,5 @@
+
+from config import MAX_ITERATIONS
 import random
 
 
@@ -142,3 +144,50 @@ class SOARouting:
         new_route[0] = male_route[0]
 
         return new_route
+    
+    def optimize_routes(self):
+        """
+        Complete Snake Optimization Algorithm (SOA)
+        """
+
+        best_route = None
+        best_fitness = -1
+
+        fitness_history = []
+
+        for iteration in range(MAX_ITERATIONS):
+
+            # Evaluate all routes
+            fitness_values = self.calculate_route_fitness()
+
+            # Select elite snakes
+            male_snake, female_snake = self.select_male_female_snakes(
+                fitness_values
+            )
+
+            # Update global best
+            if male_snake[1] > best_fitness:
+
+                best_fitness = male_snake[1]
+
+                best_route = male_snake[0].copy()
+
+            fitness_history.append(best_fitness)
+
+            updated_routes = []
+
+            # Update every route
+            for route in self.routes:
+
+                searched = self.snake_searching(route)
+
+                exploited = self.snake_exploitation(
+                    searched,
+                    male_snake[0]
+                )
+
+                updated_routes.append(exploited)
+
+            self.routes = updated_routes
+
+        return best_route, best_fitness, fitness_history
