@@ -1,4 +1,5 @@
 import csv
+import random
 
 
 class FeatureExtraction:
@@ -36,13 +37,12 @@ class FeatureExtraction:
 
         print("\n========== Extracted Features ==========\n")
 
-        print(
-            "NodeID Energy DTrust ITrust "
-            "TTrust DistBS Packet Delivered"
-        )
+        print("NodeID Energy DTrust ITrust TTrust DistBS Packet Delivered Attack")
 
-        for row in self.features[:10]:
-            print(row)
+        labels = self.inject_attacks()
+
+        for row, label in zip(self.features[:10], labels[:10]):
+            print(row + [label])
 
     def save_dataset(self, filename="network_dataset.csv"):
 
@@ -54,7 +54,8 @@ class FeatureExtraction:
             "TotalTrust",
             "DistanceToBS",
             "Packet",
-            "Delivered"
+            "Delivered",
+            "AttackLabel"
         ]
 
         with open(filename, "w", newline="") as file:
@@ -63,6 +64,47 @@ class FeatureExtraction:
 
             writer.writerow(header)
 
-            writer.writerows(self.features)
+            labels = self.inject_attacks()
+
+            updated_features = []
+
+            for feature, label in zip(self.features, labels):
+                updated_features.append(feature + [label])
+
+            writer.writerows(updated_features)
 
         print(f"\nDataset saved as {filename}")
+
+    def inject_attacks(self):
+
+        labels = []
+
+        for node in self.nodes:
+
+            r = random.random()
+
+            if r < 0.70:
+
+                label = "Normal"
+
+            elif r < 0.80:
+
+                label = "Blackhole"
+
+                node.total_trust *= 0.30
+
+            elif r < 0.90:
+
+                label = "Grayhole"
+
+                node.total_trust *= 0.55
+
+            else:
+
+                label = "DoS"
+
+                node.energy *= 0.60
+
+            labels.append(label)
+
+        return labels    
