@@ -17,6 +17,8 @@ from trust_computation import TrustComputation
 
 from soa_routing import SOARouting
 
+from packet_transmission import PacketTransmission
+
 def main():
 
     # ----------------------------
@@ -336,6 +338,18 @@ def main():
 
     print("Best Route Fitness")
     print(round(best_fitness, 6))
+
+    # ----------------------------
+    # Packet Transmission
+    # ----------------------------
+
+    packet = PacketTransmission(nodes)
+
+    packet.generate_packets()
+
+    packet.transmit_packets(trusted_nodes)
+
+    packet.display_statistics()
 
 
 if __name__ == "__main__":
