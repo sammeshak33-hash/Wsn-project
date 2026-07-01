@@ -284,6 +284,24 @@ def main():
     print("Route :", female_snake[0])
     print("Fitness :", round(female_snake[1], 6))
 
+    # ----------------------------
+    # Snake Searching (Exploration)
+    # ----------------------------
+
+    print("\n========== Snake Searching ==========\n")
+
+    sample_route = routing.routes[0]
+
+    print("Before Searching")
+    print(sample_route)
+
+    searched_route = routing.snake_searching(sample_route)
+
+    print()
+
+    print("After Searching")
+    print(searched_route)
+
 
 if __name__ == "__main__":
     main()

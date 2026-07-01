@@ -104,3 +104,28 @@ class SOARouting:
         female_snake = ranked_routes[1]
 
         return male_snake, female_snake             
+    
+    def snake_searching(self, route):
+        """
+        Exploration phase of SOA.
+        Randomly selects a different Cluster Head.
+        """
+
+        new_route = route.copy()
+
+        current_ch = new_route[0]
+
+        # Available Cluster Heads
+        candidate_heads = list(self.clusters.keys())
+
+        if len(candidate_heads) > 1:
+
+            new_ch = random.choice(candidate_heads)
+
+            while new_ch == current_ch:
+
+                new_ch = random.choice(candidate_heads)
+
+            new_route[0] = new_ch
+
+        return new_route
