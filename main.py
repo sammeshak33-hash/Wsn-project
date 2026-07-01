@@ -302,6 +302,25 @@ def main():
     print("After Searching")
     print(searched_route)
 
+    # ----------------------------
+    # Snake Exploitation
+    # ----------------------------
+
+    print("\n========== Snake Exploitation ==========\n")
+
+    print("Before Exploitation")
+    print(searched_route)
+
+    exploited_route = routing.snake_exploitation(
+        searched_route,
+        male_snake[0]
+    )
+
+    print()
+
+    print("After Exploitation")
+    print(exploited_route)
+
 
 if __name__ == "__main__":
     main()

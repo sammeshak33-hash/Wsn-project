@@ -129,3 +129,16 @@ class SOARouting:
             new_route[0] = new_ch
 
         return new_route
+    
+    def snake_exploitation(self, route, male_route):
+        """
+        Exploitation phase of SOA.
+        Move the current route towards the Male Snake.
+        """
+
+        new_route = route.copy()
+
+        # Move towards the Male Snake route
+        new_route[0] = male_route[0]
+
+        return new_route
