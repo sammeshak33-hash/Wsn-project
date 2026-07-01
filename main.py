@@ -19,6 +19,8 @@ from soa_routing import SOARouting
 
 from packet_transmission import PacketTransmission
 
+from feature_extraction import FeatureExtraction
+
 def main():
 
     # ----------------------------
@@ -350,6 +352,18 @@ def main():
     packet.transmit_packets(trusted_nodes)
 
     packet.display_statistics()
+
+    # ----------------------------
+    # Feature Extraction
+    # ----------------------------
+
+    feature = FeatureExtraction(nodes)
+
+    feature.extract_features()
+
+    feature.display_features()
+
+    feature.save_dataset()
 
 
 if __name__ == "__main__":
